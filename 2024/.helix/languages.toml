@@ -1,0 +1,11 @@
+[language-server.rust-analyzer.config]
+linkedProjects = [
+  "01.rs",
+  "02.rs",
+  "03.rs",
+  "05.rs",
+  "06.rs",
+  "07.rs",
+  "08.rs",
+  "09.rs",
+]

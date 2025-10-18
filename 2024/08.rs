@@ -183,6 +183,7 @@ fn count_antinodes_in_line(mut world: World, emitters: Emitters) -> u64 {
 
 	count
 }
+
 fn main() {
 	let input = std::fs::read("../input/2024/day8.txt").unwrap();
 	// let input = std::fs::read("../input/2024/day8.sample.txt").unwrap();
