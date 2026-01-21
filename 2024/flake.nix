@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
@@ -22,23 +22,19 @@
       formatter = forAllPkgs (pkgs: pkgs.nixpkgs-fmt);
 
       devShells = forAllPkgs (pkgs:
-        with pkgs.lib;
         let
           file-rust-toolchain = pkgs.rust-bin.stable.latest.default;
           rust-toolchain = file-rust-toolchain.override { extensions = [ "rust-analyzer" ]; };
         in
         {
-          default = pkgs.mkShell rec {
-            nativeBuildInputs = with pkgs; [
+          default = pkgs.mkShell {
+            packages = with pkgs; [
               pkg-config
               rust-toolchain
               aoc-cli
             ];
 
-            buildInputs = with pkgs; [ ];
-
             RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc;
-            LD_LIBRARY_PATH = makeLibraryPath buildInputs;
           };
         });
     };
